@@ -67,12 +67,29 @@ describe("getTouchedDependencies", () => {
             dependencies: ["app2"],
           },
         },
-        files: ["/app/packages/app1/file1", "/app/packages/app2/file1"],
+        files: ["/app/packages/app1/file1"],
       })
     ).toEqual({
       app1: ["/app/packages/app1/file1"],
-      app2: ["/app/packages/app1", "/app/packages/app2/file1"],
+      app2: ["/app/packages/app1"],
       app3: ["/app/packages/app2"],
+    });
+  });
+
+  test("it resolves circular loops", () => {
+    expect(
+      getTouchedDependencies({
+        workspaces: {
+          app1: {
+            id: "app1",
+            path: "/app/packages/app1",
+            dependencies: ["app1"],
+          },
+        },
+        files: ["/app/packages/app1/file1"],
+      })
+    ).toEqual({
+      app1: ["/app/packages/app1/file1"],
     });
   });
 });
