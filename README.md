@@ -58,4 +58,4 @@ const getChangedWorkspaces = require("yarn-changed-workspaces");
 
 ## Limitation
 
-`git` is the core diffing tool. **This library will not work if you use a differnt distributed version-control system** for tracking changes in source code during software development
+`git` is the core diffing tool. **This library will not work if you use a different distributed version-control system** for tracking changes in source code during software development
