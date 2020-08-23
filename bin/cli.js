@@ -10,15 +10,6 @@ process.on("unhandledRejection", (err) => {
   throw err;
 });
 
-const log = (fmt, ...args) => {
-  console.log(format(fmt, ...args));
-};
-
-const print = (color, fmt, ...args) => {
-  const msg = format(fmt, ...args);
-  return console.log(process.env.CI ? msg : chalk.white[color](msg));
-};
-
 const options = yargs
   .option("projectRoot", {
     alias: "p",
@@ -38,7 +29,6 @@ const options = yargs
   .option("namespace", {
     alias: "n",
     type: "string",
-    coerce: (str) => str,
   }).argv;
 
 (async () => {
