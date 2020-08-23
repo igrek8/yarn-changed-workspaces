@@ -7,15 +7,16 @@ const _glob = require("glob");
 const glob = promisify(_glob);
 
 const findWorkspaces = async ({ rootPath, pattern }) => {
+  const workspaces = [];
   const globPath = join(rootPath, pattern);
   const matched = await glob(globPath);
-  return matched.reduce(async (promise, path) => {
-    const items = await promise;
-    const stat = await fs.stat(path);
-    if (stat.isDirectory()) {
+  await Promise.all(
+    matched.map(async (path) => {
+      const stat = await fs.stat(path);
+      if (!stat.isDirectory()) return;
       const pkgPath = join(path, "package.json");
       const pkg = await readJSONFile(pkgPath);
-      items.push({
+      workspaces.push({
         id: pkg.name,
         path,
         config: pkg.workspace,
@@ -27,8 +28,8 @@ const findWorkspaces = async ({ rootPath, pattern }) => {
           ...pkg.optionalDependencies,
         }),
       });
-    }
-    return items;
-  }, Promise.resolve([]));
+    })
+  );
+  return workspaces;
 };
 exports.findWorkspaces = findWorkspaces;
