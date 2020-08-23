@@ -42,6 +42,7 @@ const getChangedWorkspaces = require("yarn-changed-workspaces");
 
 ```json
 {
+  "private": true,
   "workspaces": ["packages/*"]
 }
 ```
@@ -50,9 +51,9 @@ const getChangedWorkspaces = require("yarn-changed-workspaces");
 
 ```json
 {
-  "workspace": {
-    "files": ["!**/*.(test|spec).(j|t)s(x)?"]
-  }
+  "name": "@team/ui",
+  "version": "1.0.0",
+  "workspace": { "files": ["!**/*.(test|spec).(j|t)s(x)?"] }
 }
 ```
 
