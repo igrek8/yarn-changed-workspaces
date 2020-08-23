@@ -2,6 +2,8 @@
 
 A small utility tool to be used in CI/CD pipelines along with `git` to trigger dependent libraries' workflows in a monorepo pattern.
 
+![CI](https://github.com/igrek8/yarn-changed-workspaces/workflows/CI/badge.svg)
+
 ## Install
 
 ```
