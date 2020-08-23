@@ -8,6 +8,10 @@
     "src",
     "bin"
   ],
+  "engines": {
+    "node": ">=11.0.0"
+  },
+  "engineStrict": true,
   "devDependencies": {
     "@types/jest": "^26.0.10",
     "jest": "^26.4.1"
