@@ -11,10 +11,12 @@ const getChangedWorkspacesIds = async ({
   const formatName = (str) => (keyNaming ? _[keyNaming](str) : str);
   const normalizeName = (str) => (namespace ? str.replace(namespace, "") : str);
   const workspaces = await getChangedWorkspaces({ branch, projectRoot });
-  return Object.entries(workspaces).reduce((obj, [id, files]) => {
-    if (files.length <= 0) return obj;
-    return { ...obj, [formatName(normalizeName(id))]: files };
-  }, {});
+  const result = {};
+  Object.entries(workspaces).map(([id, files]) => {
+    if (files.length <= 0) return;
+    result[formatName(normalizeName(id))] = files;
+  });
+  return result;
 };
 
 module.exports.getChangedWorkspacesIds = getChangedWorkspacesIds;
