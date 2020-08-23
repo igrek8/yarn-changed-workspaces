@@ -1,0 +1,25 @@
+{
+  "name": "yarn-changed-workspaces",
+  "version": "1.0.0",
+  "main": "./index.js",
+  "bin": "./bin/cli.js",
+  "license": "MIT",
+  "files": [
+    "src",
+    "bin"
+  ],
+  "devDependencies": {
+    "@types/jest": "^26.0.10",
+    "jest": "^26.4.1"
+  },
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "glob": "^7.1.6",
+    "lodash": "^4.17.20",
+    "micromatch": "^4.0.2",
+    "yargs": "^15.4.1"
+  },
+  "scripts": {
+    "test": "jest"
+  }
+}
