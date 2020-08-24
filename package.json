@@ -3,6 +3,21 @@
   "version": "2.0.8",
   "main": "./src/index.js",
   "bin": "./bin/cli.js",
+  "description": "An utility to show changed workspaces and their dependants",
+  "homepage": "https://github.com/igrek8/yarn-changed-workspaces#readme",
+  "bugs": {
+    "url": "https://github.com/igrek8/yarn-changed-workspaces/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/igrek8/yarn-changed-workspaces.git"
+  },
+  "keywords": [
+    "yarn",
+    "workspaces",
+    "monorepository",
+    "changes"
+  ],
   "license": "MIT",
   "files": [
     "src",
