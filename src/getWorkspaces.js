@@ -6,9 +6,9 @@ const { keyById } = require("./keyById");
 const getWorkspaces = async (rootPath) => {
   const pkgPath = resolve(rootPath, "package.json");
   const packageJson = await readJSONFile(pkgPath);
-  const patterns = Array.isArray(packageJson.workspaces)
-    ? packageJson.workspaces
-    : Array.isArray(packageJson.workspaces.packages) || [];
+  const patterns = (packageJson.workspaces && packageJson.workspaces.packages)
+    ? packageJson.workspaces.packages
+    : packageJson.workspaces || [];
   const workspaces = await Promise.all(
     patterns.map(async (pattern) => findWorkspaces({ pattern, rootPath }))
   );
