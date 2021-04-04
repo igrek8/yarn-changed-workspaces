@@ -36,4 +36,25 @@ describe("getWorkspaces", () => {
       rootPath: "/app",
     });
   });
+  
+  
+  test("it returns workspaces.packages", async () => {
+    readJSONFile.mockImplementationOnce(() => ({
+      workspaces: {
+        packages: ["packages/*"],
+      }
+    }));
+    findWorkspaces.mockImplementationOnce(() => [
+      { id: "app1", path: "/app/packages/app1", dependencies: [] },
+      { id: "app2", path: "/app/packages/app2", dependencies: ["app1"] },
+    ]);
+    await expect(getWorkspaces("/app")).resolves.toEqual({
+      app1: { id: "app1", path: "/app/packages/app1", dependencies: [] },
+      app2: { id: "app2", path: "/app/packages/app2", dependencies: ["app1"] },
+    });
+    expect(findWorkspaces).toHaveBeenCalledWith({
+      pattern: "packages/*",
+      rootPath: "/app",
+    });
+  });
 });
