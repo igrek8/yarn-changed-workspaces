@@ -36,13 +36,12 @@ describe("getWorkspaces", () => {
       rootPath: "/app",
     });
   });
-  
-  
+
   test("it returns workspaces.packages", async () => {
     readJSONFile.mockImplementationOnce(() => ({
       workspaces: {
         packages: ["packages/*"],
-      }
+      },
     }));
     findWorkspaces.mockImplementationOnce(() => [
       { id: "app1", path: "/app/packages/app1", dependencies: [] },
