@@ -18,6 +18,20 @@ describe("getTouchedFiles", () => {
     );
   });
 
+  test("it uses git diff with the two given branch (from..to)", async () => {
+    _exec.mockImplementationOnce((_, __, cb) =>
+      cb(null, { stdout: "", stderr: "" })
+    );
+    await expect(
+      getTouchedFiles({ fromBranch: "develop", branch: "master", cwd: "/app" })
+    ).resolves.toEqual([]);
+    expect(_exec).toHaveBeenCalledWith(
+      "git diff --name-only develop..master",
+      { cwd: "/app" },
+      expect.any(Function)
+    );
+  });
+
   test("it returns resolved files paths", async () => {
     _exec.mockImplementationOnce((_, __, cb) =>
       cb(null, { stdout: "./file1\n./file2" })

@@ -4,11 +4,11 @@ const { getChangedFiles } = require("./getChangedFiles");
 const { getTouchedDependencies } = require("./getTouchedDependencies");
 const { getWorkspaces } = require("./getWorkspaces");
 
-const getChangedWorkspaces = async ({ branch, projectRoot }) => {
+const getChangedWorkspaces = async ({ fromBranch, branch, projectRoot }) => {
   const path = resolve(projectRoot);
   const [workspaces, files] = await Promise.all([
     getWorkspaces(path),
-    getChangedFiles({ cwd: path, branch }),
+    getChangedFiles({ fromBranch, cwd: path, branch }),
   ]);
   return getTouchedDependencies({ files, workspaces });
 };

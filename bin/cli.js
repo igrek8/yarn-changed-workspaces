@@ -18,6 +18,9 @@ const options = yargs
     type: "string",
     normalize: true,
   })
+  .option("fromBranch", {
+    description: "Option to `git diff` from a diff branch than current one."
+  })
   .option("branch", {
     alias: "b",
     default: "master",
